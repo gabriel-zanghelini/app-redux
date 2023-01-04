@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: auto;
+  height: 100vh;
+
+  background-color: #fafafa;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  align-items: center;
+  gap: 10px;
+}
+
+input {
+  width: 300px;
+  max-height: 20px;
+  font-size: 1em;
+  padding: 0.3em;
+
+  border: 1px solid #bbb;
+  border-radius: 3px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox input {
+  width: auto;
+  margin-right: 10px;
+}
+
+.checkbox label {
+  max-width: 300px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
