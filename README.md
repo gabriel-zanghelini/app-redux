@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# app-redux
+
+Project created to study redux and redux-toolkit. The app is a simple form but with the possibility to undo and redo the input values. The objective is to test the redux state management. It can be acessed [here](https://gabriel-zanghelini.github.io/app-redux/)
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
 
