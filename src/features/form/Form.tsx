@@ -6,6 +6,8 @@ import {
   setEmail,
   setName,
   setWantsNewsAndPromotions,
+  undo,
+  redo,
 } from "./formSlice";
 
 export const Form = () => {
@@ -14,41 +16,61 @@ export const Form = () => {
 
   return (
     <div className={styles.container}>
-      <form>
-        <input
-          type="text"
-          placeholder="Name"
-          onChange={(e) => dispatch(setName(e.target.value))}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          onChange={(e) => dispatch(setEmail(e.target.value))}
-        />
-        <input
-          type="date"
-          max="2999-12-31"
-          placeholder="Birth Date"
-          onChange={(e) => dispatch(setBirthday(e.target.valueAsNumber))}
-        />
-        <span className={styles.checkbox}>
+      <div>
+        <div>
+          <button
+            disabled={form.fieldsPast.length === 0}
+            onClick={() => dispatch(undo())}
+          >
+            Undo
+          </button>
+          <button
+            disabled={form.fieldsFuture.length === 0}
+            onClick={() => dispatch(redo())}
+          >
+            Redo
+          </button>
+        </div>
+        <form>
           <input
-            id="cb"
-            type="checkbox"
-            onChange={(e) =>
-              dispatch(setWantsNewsAndPromotions(e.target.checked))
-            }
+            type="text"
+            placeholder="Name"
+            value={form.present.name}
+            onChange={(e) => dispatch(setName(e.target.value))}
           />
-          <label htmlFor="cb">Quero receber notícias e promoções</label>
-        </span>
-      </form>
+          <input
+            type="email"
+            placeholder="Email"
+            value={form.present.email}
+            onChange={(e) => dispatch(setEmail(e.target.value))}
+          />
+          <input
+            type="date"
+            max="2999-12-31"
+            placeholder="Birth Date"
+            value={form.present.birthday}
+            onChange={(e) => dispatch(setBirthday(e.target.value))}
+          />
+          <span className={styles.checkbox}>
+            <input
+              id="cb"
+              type="checkbox"
+              checked={form.present.wantsNewsAndPromotions}
+              onChange={(e) =>
+                dispatch(setWantsNewsAndPromotions(e.target.checked))
+              }
+            />
+            <label htmlFor="cb">Quero receber notícias e promoções</label>
+          </span>
+        </form>
+      </div>
 
       <div>
         <h3>Form State:</h3>
         <ul>
           {Object.entries(form).map(([key, value]) => (
             <li key={key}>
-              {key}: {`${value}`}
+              {key}: {JSON.stringify(value)}
             </li>
           ))}
         </ul>
