@@ -1,6 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { RootState } from "../../app/store";
-import styles from "./Form.module.css";
 import {
   setBirthday,
   setEmail,
@@ -9,15 +8,22 @@ import {
   undo,
   redo,
 } from "./formSlice";
+import styles from "./Form.module.css";
 
 export const Form = () => {
   const dispatch = useAppDispatch();
   const form = useAppSelector((state: RootState) => state.form);
 
+  console.log(
+    Object.entries(form).map(
+      ([key, value]) => `${key}: ${JSON.stringify(value)}`
+    )
+  );
+
   return (
     <div className={styles.container}>
       <div>
-        <div>
+        <div className={styles.formHeader}>
           <button
             disabled={form.fieldsPast.length === 0}
             onClick={() => dispatch(undo())}
@@ -63,17 +69,6 @@ export const Form = () => {
             <label htmlFor="cb">Quero receber notícias e promoções</label>
           </span>
         </form>
-      </div>
-
-      <div>
-        <h3>Form State:</h3>
-        <ul>
-          {Object.entries(form).map(([key, value]) => (
-            <li key={key}>
-              {key}: {JSON.stringify(value)}
-            </li>
-          ))}
-        </ul>
       </div>
     </div>
   );

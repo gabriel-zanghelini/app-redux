@@ -43,3 +43,29 @@ input {
   text-overflow: ellipsis;
   overflow: hidden;
 }
+
+.formHeader {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+
+  margin-bottom: 20px;
+}
+
+.formHeader button {
+  background-color: #178beb;
+  color: #ffffff;
+  border: 0;
+  border-radius: 3px;
+  padding: 5px;
+}
+
+.formHeader button:hover {
+  background-color: #0a7bd8;
+  cursor: pointer;
+}
+
+.formHeader button:disabled {
+  background-color: #aaaaaa;
+  cursor: default;
+}
